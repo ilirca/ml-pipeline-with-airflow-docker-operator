@@ -26,7 +26,7 @@ echo "Hey the dataset is ready, let's trigger the training process"
 
     model_train_and_publish_task = DockerOperator(
         task_id='docker_model_train_and_publish_task',
-        docker_url="unix://var/run/docker.sock",  # Use the default Docker socket
+        docker_url="tcp://docker-socket-proxy:2375",  # note ilir: not default docker. it's to ensure that airflow can communicate with docker correctly
         api_version='auto',  # Use 'auto' to let Docker select the appropriate API version
         auto_remove=True,  # Remove the container when the task completes
         image='regression-training-image:v1.0',  # Replace with your Docker image and tag

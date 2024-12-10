@@ -7,11 +7,26 @@ services:
     environment:
       - MINIO_ROOT_USER=minioadmin
       - MINIO_ROOT_PASSWORD=minioadmin
+      # smtp email notification config
+      # provide smtp details
+      # env variable needed for docker operator
+      - AIRFLOW__CORE__ENABLE_XCOM_PICKLING: True
     ports:
       - "9000:9000"
       - "9001:9001"
     volumes:
       - minio_data:/data
+  
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy:0.1.1
+    environment:
+      - CONTAINERS: 1
+      - IMAGES: 1
+      - AUTH: 1
+      - POST: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
 
 volumes:
   minio_data:
