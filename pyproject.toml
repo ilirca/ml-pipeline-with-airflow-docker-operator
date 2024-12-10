@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pipeline-airflow-docker"
+version = "0.1.0"
+description = ""
+authors = ["icafaj <ilir.cafaj@vodafoneziggo.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.5"
+apache-airflow-providers-docker = "^3.14.1"
+graphviz = "^0.20.3"
+apache-airflow = "^2.10.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
